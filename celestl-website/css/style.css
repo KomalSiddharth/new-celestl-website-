@@ -1,0 +1,46 @@
+/* Celestl: base styles, hover states and motion.
+   Layout and colours live inline in the HTML (exported from the design). */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: #0A0A0B; color: #F5F5F4; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
+a { color: #F5F5F4; transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+a:hover { color: #9DB8F5; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 2px solid #4F8CF7; outline-offset: 3px; border-radius: 6px; }
+summary { cursor: pointer; }
+input::placeholder, textarea::placeholder { color: #71717A; }
+
+/* Buttons (pill links with a light background) */
+a[style*="background: #F5F5F4"]:hover, button[type="submit"]:hover { color: #0A0A0B; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(79,140,247,.28), 0 6px 18px rgba(240,150,90,.18); }
+button[type="submit"] { transition: transform .2s ease, box-shadow .2s ease; }
+button[type="submit"]:active, a[style*="background: #F5F5F4"]:active { transform: translateY(0) scale(.98); }
+
+/* Cards lift on hover */
+article[style*="border-radius: 16px"], a[style*="border-radius: 16px"], a[style*="border-radius: 14px"] { transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+article[style*="border-radius: 16px"]:hover, a[style*="border-radius: 16px"]:hover, a[style*="border-radius: 14px"]:hover { transform: translateY(-4px); border-color: #3F4A66 !important; box-shadow: 0 18px 40px rgba(0,0,0,.45); }
+
+/* Demo video play button */
+#demo-video-play .play-dot { transition: transform .2s ease, box-shadow .2s ease; }
+#demo-video-play:hover .play-dot { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(245,245,244,.12), 0 12px 40px rgba(79,140,247,.4); }
+
+/* Gradient headline text with a slow shimmer */
+.grad { background: linear-gradient(90deg, #8088D0 0%, #4F8CF7 25%, #B9C6FF 50%, #4F8CF7 75%, #8088D0 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 7s linear infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* Hero: content rises in on load */
+#top > div > * { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+#top > div > *:nth-child(2) { animation-delay: .08s; }
+#top > div > *:nth-child(3) { animation-delay: .18s; }
+#top > div > *:nth-child(4) { animation-delay: .28s; }
+#top > div > *:nth-child(5) { animation-delay: .4s; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+
+/* Scroll reveal (classes are added by js/main.js) */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
